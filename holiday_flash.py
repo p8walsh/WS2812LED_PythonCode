@@ -5,7 +5,7 @@ import time
 num_pixels = 150
 pixels = neopixel.NeoPixel(board.D18, num_pixels, brightness=0.2, auto_write=False)
 
-christmas_colors = [(255, 255, 0), (255, 0, 0), (255, 255, 255)]
+christmas_colors = [(0, 255, 0), (255, 0, 0), (255, 255, 255)]
 hanukkah_colors = [(0, 0, 255), (255, 255, 255), (0, 0, 255)]
 kwanzaa_colors = [(255, 0, 0), (0, 255, 0), (0, 0, 0)]
 
