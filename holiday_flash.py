@@ -6,6 +6,7 @@ import signal
 
 def end(pixels):
     pixels.fill((0, 0, 0))
+    pixels.show()
     sys.exit(0)
 
 num_pixels = 150
