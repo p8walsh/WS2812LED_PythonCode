@@ -1,6 +1,12 @@
 import board
 import neopixel
 import time
+import sys
+import signal
+
+def end(pixels):
+    pixels.fill((0, 0, 0))
+    sys.exit(0)
 
 num_pixels = 150
 pixels = neopixel.NeoPixel(board.D18, num_pixels, brightness=0.2, auto_write=False)
@@ -13,6 +19,8 @@ color_list = []
 color_list.append(christmas_colors)
 color_list.append(hanukkah_colors)
 color_list.append(kwanzaa_colors)
+
+signal.signal(signal.SIGKILL, end(pixels))
 
 j = 0
 k = 0
