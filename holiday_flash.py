@@ -21,7 +21,7 @@ color_list.append(christmas_colors)
 color_list.append(hanukkah_colors)
 color_list.append(kwanzaa_colors)
 
-signal.signal(signal.SIGKILL, end)
+signal.signal(signal.SIGTERM, end)
 signal.signal(signal.SIGINT, end)
 
 j = 0
