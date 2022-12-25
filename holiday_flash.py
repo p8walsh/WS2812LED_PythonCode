@@ -4,13 +4,13 @@ import time
 import sys
 import signal
 
-def end(pixels):
+num_pixels = 150
+pixels = neopixel.NeoPixel(board.D18, num_pixels, brightness=0.2, auto_write=False)
+
+def end(signum, frame):
     pixels.fill((0, 0, 0))
     pixels.show()
     sys.exit(0)
-
-num_pixels = 150
-pixels = neopixel.NeoPixel(board.D18, num_pixels, brightness=0.2, auto_write=False)
 
 christmas_colors = [(0, 255, 0), (255, 0, 0), (255, 255, 255)]
 hanukkah_colors = [(0, 0, 255), (255, 255, 255), (0, 0, 255)]
@@ -21,8 +21,8 @@ color_list.append(christmas_colors)
 color_list.append(hanukkah_colors)
 color_list.append(kwanzaa_colors)
 
-signal.signal(signal.SIGKILL, end(pixels))
-signal.signal(signal.SIGINT, end(pixels))
+signal.signal(signal.SIGKILL, end)
+signal.signal(signal.SIGINT, end)
 
 j = 0
 k = 0
