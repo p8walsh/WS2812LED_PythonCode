@@ -16,6 +16,14 @@ colors =[(255, 0, 0),
          (0, 0, 255)
         ]
 
+def end(signum, frame):
+    pixels.fill((0, 0, 0))
+    pixels.show()
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, end)
+signal.signal(signal.SIGINT, end)
+    
 def slow_change(indices, cur_color, new_color):
     r, g, b = cur_color
     # Slowly fade to black
