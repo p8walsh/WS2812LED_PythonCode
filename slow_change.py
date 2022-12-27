@@ -2,38 +2,58 @@ import board
 import neopixel
 import time
 import random
+import copy
 
 num_pixels = 150
-pixels = neopixel.NeoPixel(board.D18, num_pixels, brightness=0.8, auto_write=False)
+pixels = neopixel.NeoPixel(board.D18, num_pixels,
+                           brightness=0.8, auto_write=False)
+
+colors =[(255, 0, 0),
+         (3, 240, 252),
+         (0, 0, 255),
+         (0, 255, 0),
+         (117, 2, 106),
+         (0, 0, 255)
+        ]
 
 def slow_change(indices, cur_color, new_color):
-	# Slowly fade to black
-	for i in range(255):
-		for index in indices:
-			pixels[index] = (255 - i)*(cur_color) / 255
-		pixels.show()
-	
-	# Slowly fade in new color
-	for i in range(255):
-		for index in indices:
-			pixels[index] = (i)*(new_color) / 255
-		pixels.show()
+    r, g, b = cur_color
+    # Slowly fade to black
+    for i in range(255):
+        for index in indices:
+            pixels[index] = (int(((255 - i) * r) / 255),
+                             int(((255 - i) * g) / 255), int(((255 - i) * b) / 255))
+        pixels.show()
+        #time.sleep(0.0001)
 
-while True:
-	# Start with all green
-	for i in range(num_pixels):
-		pixels[i] = (0, 255, 0)
-	# Get 20% random pixels
-	pixel_list = []
-	for i in range(num_pixels):
-		pixel_list.append(i)
-	indices = []
-	for j in range(1, 6):
-		for i in range(j*int(num_pixels)/5):
-			choice = random.choice(pixel_list)
-			pixel_list.remove(choice)
-			indices.append(choice)
-		slow_change(indices, (0, 255, 0), (255, 0, 0))
-		time.sleep(2)
-		
-		
+    r, g, b = new_color
+    # Slowly fade in new color
+    for i in range(255):
+        for index in indices:
+            pixels[index] = (int(((i) * r) / 255),
+                             int(((i) * g) / 255), int(((i) * b) / 255))
+        pixels.show()
+        #time.sleep(0.0001)
+
+def loop_slow_change(cur_color, new_color):
+    pixel_list = []
+    for i in range(num_pixels):
+        pixel_list.append(i)
+    for j in range(1, 6):
+        indices = []
+        for i in range(int(num_pixels/5)):
+            choice = random.choice(pixel_list)
+            pixel_list.remove(choice)
+            indices.append(choice)
+        slow_change(indices, cur_color, new_color)
+        
+if __name__ == '__main__':
+    mutable_colors = []
+    cur_color = colors[0]
+    while True:
+        if len(mutable_colors) == 0:
+            mutable_colors = copy.deepcopy(colors)
+        new_color = random.choice(mutable_colors)
+        mutable_colors.remove(new_color)
+        loop_slow_change(cur_color, new_color)
+        cur_color = new_color
