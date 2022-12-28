@@ -3,6 +3,7 @@ import neopixel
 import time
 import random
 import copy
+import signal
 
 num_pixels = 150
 pixels = neopixel.NeoPixel(board.D18, num_pixels,
