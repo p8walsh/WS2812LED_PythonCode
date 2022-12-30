@@ -9,12 +9,12 @@ x = 0
 while True: 
     for i in range(0, num_pixels-10, 10):
         for j in range(10):
-            if ( (i/10) % 2 == x ):
-                pixels[i+j] = (82, 49, 120)
+            if ( j < 8 ):
+                pixels[(i+j+x)%num_pixels] = (int(82*(3/5)),int(49*(3/5)),int(120*(3/5)))
             else:
-                pixels[i+j] = (255, 255, 255)
+                pixels[(i+j+x)%num_pixels] = (255,255,255)
     
     pixels.show()
-    time.sleep(0.1)
+    time.sleep(1)
     
-    x = (x + 1) % 2
+    x = (x + 1) % num_pixels
