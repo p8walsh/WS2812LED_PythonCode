@@ -12,7 +12,7 @@ while True:
             if ( j < 5 ):
                 pixels[(i+j+x)%num_pixels] = (255,205,0)
             else:
-                pixels[(i+j+x)%num_pixels] = (40,40,40)
+                pixels[(i+j+x)%num_pixels] = (0,0,0)
     
     pixels.show()
     time.sleep(1)
