@@ -40,7 +40,7 @@ with open("crontab_root_copy", 'w') as file:
 # m h  dom mon dow   command\n\
 #*/2 * * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/CornellCollegeColors.py\n\
 #1-59/2 * * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/UniversityOfIowaColors.py\n\
-" + f'{today_sunset.minute}'.zfill(2) + " " + f'{today_sunset.hour}'.zfill(2) + " * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/slow_change.py\n\
+" + f'{today_sunset.minute}' + " " + f'{today_sunset.hour}' + " * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/slow_change.py\n\
 0 22 * * * sudo killall python\n\
 55 11 * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/sunset.py\n\
 0 12 * * * sudo cp /home/peter/LED_CODE/WS2812LED_PythonCode/crontab_root_copy /var/spool/cron/crontabs/root\n\
