@@ -38,8 +38,8 @@ with open("crontab_root_copy", 'w') as file:
 # For more information see the manual pages of crontab(5) and cron(8)\n\
 #\n\
 # m h  dom mon dow   command\n\
-#*/2 * * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/CornellCollegeColors.py\n\
-#1-59/2 * * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/UniversityOfIowaColors.py\n\
+0 7 * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/slow_change.py\n\
+0 8 * * * sudo killall python\n\
 " + f'{today_sunset.minute}' + " " + f'{today_sunset.hour}' + " * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/slow_change.py\n\
 0 22 * * * sudo killall python\n\
 55 11 * * * sudo killall python ; sudo /usr/bin/python /home/peter/LED_CODE/WS2812LED_PythonCode/sunset.py\n\
