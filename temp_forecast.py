@@ -13,8 +13,8 @@ pixels = neopixel.NeoPixel(board.D18, num_pixels,
 currentTime = time.localtime()
 
 def end(signum, frame):
-#    pixels.fill((0, 0, 0))
-#    pixels.show()
+    pixels.fill((0, 0, 0))
+    pixels.show()
     sys.exit(0)
 
 signal.signal(signal.SIGTERM, end)
@@ -24,7 +24,7 @@ signal.signal(signal.SIGINT, end)
 if __name__ == '__main__':
     colors = []  
     # Get the colors corresponding to the temperature graph for the current hour 
-    with open(sys.path[0] + "\\" + time.strftime("TemperatureColorsDenver_%Y_%m_%d_%H.txt",currentTime), 'r') as f:
+    with open(sys.path[0] + "/" + time.strftime("TemperatureColorsDenver_%Y_%m_%d_%H.txt",currentTime), 'r') as f:
         for line in f:
             splitline = line.split(',')
             colors.append(splitline)
@@ -40,3 +40,5 @@ if __name__ == '__main__':
     # Now colors is a 2-d array of the correct colors: [35, 255, 212]
     for i in range(len(pixels)):
         pixels[i] = colors[i]
+
+    pixels.show()
